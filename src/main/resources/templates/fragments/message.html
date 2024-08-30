@@ -1,0 +1,11 @@
+<div th:if="${session.success}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong th:text="${session.success}"></strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+</div>
+<div th:if="${session.failure}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong th:text="${session.failure}"></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+</div>
+<th:block th:text="${@sessionDataRemover.removeMessage()}"></th:block>

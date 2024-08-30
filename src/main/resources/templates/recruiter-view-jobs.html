@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Recruiter View Jobs</title>
+	<th:block th:insert="~{fragments/header.html}"></th:block>
+	<link rel="stylesheet" type="text/css" href="/css/table.css">
+</head>
+
+<body>
+	<th:block th:insert="~{fragments/navbar.html}"></th:block>
+	<div class="container mt-5">
+		<th:block th:insert="~{fragments/message.html}"></th:block>
+		<div class="row justify-content-center mt-5">
+			<table>
+				<tr>
+					<th>Comapny Name</th>
+					<th>Job Role</th>
+					<th>Job Description</th>
+					<th>Salary</th>
+					<th>Company Number</th>
+					<th>About Company</th>
+					<th>Skills</th>
+					<th>Experience Required</th>
+					<th>Last Date to Apply</th>
+					<th>View Applied Candidates</th>
+				</tr>
+
+				<tr th:each="job:${jobs}">
+					<td th:text="${job.recruiterDetails.companyName}"></td>
+					<td th:text="${job.jobProfile}"></td>
+					<td th:text="${job.jobDescription}"></td>
+					<td th:text="${job.salary}"></td>
+					<td th:text="${job.recruiterDetails.companyMobileNumber}"></td>
+					<td th:text="${job.recruiterDetails.aboutUs}"></td>
+					<td th:text="${job.skillsRequired}"></td>
+					<td th:text="${job.experienceRequired}"></td>
+					<td th:text="${job.lastDate}"></td>
+					<td><a th:href="'/recruiter/view-applicants/'+${job.id}"><button class="approve-button">View</button></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<a href="/" class="center">
+				<button class="back-button">Back</button>
+			</a>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Admin View Recruiter</title>
+	<th:block th:insert="~{fragments/header.html}"></th:block>
+	<link rel="stylesheet" type="text/css" href="/css/table.css">
+</head>
+
+<body>
+	<th:block th:insert="~{fragments/navbar.html}"></th:block>
+	<div class="container mt-5">
+		<th:block th:insert="~{fragments/message.html}"></th:block>
+		<div class="row justify-content-center mt-5">
+			<table>
+				<tr>
+					<th>Recruiter Name</th>
+					<th>Recruiter Mobile</th>
+					<th>Recruiter Email</th>
+					<th>Company Name</th>
+					<th>About Company</th>
+					<th>Company Mobile</th>
+					<th>License Details</th>
+					<th>Approve</th>
+				</tr>
+
+				<tr th:each="user:${list}">
+					<th:block th:if="${!user.profileComplete}">
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.mobile}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.recruiterDetails.companyName}"></td>
+						<td th:text="${user.recruiterDetails.aboutUs}">About Company</td>
+						<td th:text="${user.recruiterDetails.companyMobileNumber}">Company Mobile</td>
+						<td th:text="${user.recruiterDetails.licenceNumber}">License Details</td>
+						<td><a th:href="'/admin/complete-profile/'+${user.id}"><button
+									class="approve-button">Approve</button></a></td>
+					</th:block>
+				</tr>
+			</table>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<a href="/" class="center">
+				<button class="back-button">Back</button>
+			</a>
+		</div>
+	</div>
+</body>
+
+</html>

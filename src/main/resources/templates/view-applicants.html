@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Applicant Details</title>
+	<th:block th:insert="~{fragments/header.html}"></th:block>
+	<link rel="stylesheet" type="text/css" href="/css/table.css">
+</head>
+
+<body>
+	<th:block th:insert="~{fragments/navbar.html}"></th:block>
+	<div class="container mt-5">
+		<th:block th:insert="~{fragments/message.html}"></th:block>
+		<div class="row justify-content-center mt-5">
+			<table>
+				<tr>
+					<th rowspan="2">Applicant Name</th>
+					<th rowspan="2">Mobile Number</th>
+					<th rowspan="2">Skills</th>
+					<th rowspan="2">Highest Qualification</th>
+					<th colspan="4">Education</th>
+					<th rowspan="2">Resume</th>
+				</tr>
+				
+				<tr>
+					<th>10</th>
+					<th>12</th>
+					<th>Degree</th>
+					<th>Masters</th>
+				</tr>
+
+				<tr th:each="detail:${applicantDetails}">
+					<td th:text="${detail.user.name}"></td>
+					<td th:text="${detail.user.mobile}"></td>
+					<td th:text="${detail.skillsString}"></td>
+					<td th:text="${detail.highestEducation}"></td>
+					<td th:text="${detail.percentage10}"></td>
+					<td th:text="${detail.percentage12}"></td>
+					<td th:text="${detail.percentageDegree}"></td>
+					<td th:text="${detail.percentageMasters}"></td>
+					<td><a th:href="${detail.resumePath}"><button>View</button></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<a href="/" class="center">
+				<button class="back-button">Back</button>
+			</a>
+		</div>
+	</div>
+</body>
+
+</html>

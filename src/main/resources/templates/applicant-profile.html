@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Signup</title>
+    <th:block th:insert="~{fragments/header.html}"></th:block>
+    <link rel="stylesheet" href="/css/signup.css">
+    <script>
+        function loadPercentageFields() {
+                var educationSelect = document.getElementById("highestEducation");
+                var percentage10Group = document.getElementById("percentage10Group");
+                var percentage12Group = document.getElementById("percentage12Group");
+                var percentageDegreeGroup = document.getElementById("percentageDegreeGroup");
+                var percentageMastersGroup = document.getElementById("percentageMastersGroup");
+
+                // Hide all percentage field groups initially
+                percentage10Group.style.display = "none";
+                percentage12Group.style.display = "none";
+                percentageDegreeGroup.style.display = "none";
+                percentageMastersGroup.style.display = "none";
+
+                // Show the relevant percentage field group based on selected education
+                var selectedEducation = educationSelect.value;
+                switch (selectedEducation) {
+                    case "btech":
+                    case "bsc":
+                    case "bca":
+                    case "be":
+                        percentage10Group.style.display = "block";
+                        percentage12Group.style.display = "block";
+                        percentageDegreeGroup.style.display = "block";
+                        break;
+                    case "12":
+                        percentage10Group.style.display = "block";
+                        percentage12Group.style.display = "block";
+                        break;
+                    case "msc":
+                    case "me":
+                    case "mca":
+                    case "mtech":
+                        percentage10Group.style.display = "block";
+                        percentage12Group.style.display = "block";
+                        percentageDegreeGroup.style.display = "block";
+                        percentageMastersGroup.style.display = "block";
+                        break;
+                }
+            }
+
+    </script>
+</head>
+
+<body>
+    <th:block th:insert="~{fragments/navbar.html}"></th:block>
+    <div class="container mt-5">
+        <th:block th:insert="~{fragments/message.html}"></th:block>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Complete Profile</h1>
+                        <form action="/applicant/complete-profile" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="highestEducation">Highest Education:</label>
+                                <select class="form-control" name="highestEducation" id="highestEducation"
+                                    onchange="loadPercentageFields()">
+                                    <option value="mtech">M.Tech</option>
+                                    <option value="12">12th</option>
+                                    <option value="btech">B.Tech</option>
+                                    <option value="mtech">M.Tech</option>
+                                    <option value="msc">M.Sc</option>
+                                    <option value="bsc">B.Sc</option>
+                                    <option value="bca">BCA</option>
+                                    <option value="be">BE</option>
+                                    <option value="me">ME</option>
+                                    <option value="mca">MCA</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="skills">Skills:</label><br>
+                                <input type="checkbox" name="skills" value="Java">Java
+                                <input type="checkbox" name="skills" value="JDBC">JDBC
+                                <input type="checkbox" name="skills" value="HTML">HTML
+                                <input type="checkbox" name="skills" value="CSS">CSS
+                                <input type="checkbox" name="skills" value="CPP">CPP
+                                <input type="checkbox" name="skills" value="Python">Python
+                                <input type="checkbox" name="skills" value="JavaScript">JavaScript
+                            </div>
+                            <div class="form-group" id="percentage10Group">
+                                <label for="percentage10">Percentage (10th):</label>
+                                <input type="text" class="form-control" name="percentage10" id="percentage10" value="0">
+                            </div>
+                            <div class="form-group" id="percentage12Group">
+                                <label for="percentage12">Percentage (12th):</label>
+                                <input type="text" class="form-control" name="percentage12" id="percentage12" value="0">
+                            </div>
+                            <div class="form-group" id="percentageDegreeGroup">
+                                <label for="percentageDegree">Percentage (Degree):</label>
+                                <input type="text" class="form-control" name="percentageDegree" id="percentageDegree" value="0">
+                            </div>
+                            <div class="form-group" id="percentageMastersGroup">
+                                <label for="percentageMasters">Percentage (Masters):</label>
+                                <input type="text" class="form-control" name="percentageMasters" id="percentageMasters" value="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="resume">Resume:</label>
+                                <input type="file" name="resume" id="resume" accept=".pdf">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block w-100 mt-3">Complete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:insert="~{fragments/footer.html}"></th:block>
+</body>
+
+</html>

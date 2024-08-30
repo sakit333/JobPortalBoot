@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">
+			<img src="/images/logo.png" alt="JobPortal" height="40">
+		</a>
+		<span class="navbar-text d-block d-lg-none text-center mb-2">Job Portal Website</span>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end"
+			id="navbarNav">
+			<ul class="navbar-nav" th:if="${session.portalUser==null}">
+				<li class="nav-item"><a
+					class="nav-link btn btn-outline-light rounded-pill px-4"
+					href="/login">Login</a></li>
+				<li class="nav-item"><a
+					class="nav-link btn btn-outline-light rounded-pill px-4"
+					href="/signup">Signup</a></li>
+			</ul>
+			<ul class="navbar-nav" th:if="${session.portalUser!=null}">
+				<th:block th:if="${session.portalUser.role=='admin'}">
+					<li class="nav-item"><a
+						class="nav-link btn btn-outline-light rounded-pill px-4"
+						href="/admin/fetch-recruiter">Approve Recruiters</a></li>
+				</th:block>
+				<th:block th:if="${session.portalUser.role=='applicant'}">
+					<li class="nav-item" th:if="${!session.portalUser.profileComplete}">
+						<a class="nav-link btn btn-outline-light rounded-pill px-4"
+						href="/applicant/complete-profile">Complete Your Profile</a>
+					</li>
+					<li class="nav-item"><a
+						class="nav-link btn btn-outline-light rounded-pill px-4" href="/applicant/view-jobs">View
+							All Jobs</a></li>
+					<li class="nav-item"><a
+						class="nav-link btn btn-outline-light rounded-pill px-4" href="">View
+							Applied Jobs</a></li>
+				</th:block>
+				<th:block th:if="${session.portalUser.role=='recruiter'}">
+					<li class="nav-item" th:if="${!session.portalUser.profileComplete}">
+						<a class="nav-link btn btn-outline-light rounded-pill px-4"
+						href="/recruiter/complete-profile">Complete Your Profile</a>
+					</li>
+					<li class="nav-item"><a
+						class="nav-link btn btn-outline-light rounded-pill px-4" href="/recruiter/post-job">Post
+							Job</a></li>
+					<li class="nav-item"><a
+						class="nav-link btn btn-outline-light rounded-pill px-4" href="/recruiter/view-jobs">View
+							Posted Jobs</a></li>
+				</th:block>
+				<li class="nav-item"><a
+					class="nav-link btn btn-outline-light rounded-pill px-4"
+					href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
