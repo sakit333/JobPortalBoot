@@ -24,7 +24,7 @@ public class EmailSendingHelper {
 		MimeMessage message=mailSender.createMimeMessage();
 		MimeMessageHelper helper=new MimeMessageHelper(message);
 		try {
-		helper.setFrom("saishkulkarni7@gmail.com","Job-Portal");
+		helper.setFrom("sak528264@gmail.com","Job-Portal");
 		helper.setTo(portalUser.getEmail());
 		helper.setSubject("Otp Verification Process");
 		
