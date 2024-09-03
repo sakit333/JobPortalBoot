@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: jobportal
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - spring-mysql-network
+
+  spring-app:
+    image: sakit333/webappproject
+    container_name: spring-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/jobportal
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8090:80"
+    depends_on:
+      - mysql-db
+    networks:
+      - spring-mysql-network
+
+volumes:
+  mysql-data:
+
+networks:
+  spring-mysql-network:
+    driver: bridge
